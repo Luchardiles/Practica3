@@ -1,0 +1,118 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<ion-app>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <p *ngIf="!isEditMode">{{ users[0].name }} {{ users[0].lastname }}<p>
+        <p class="text-left font-extrabold text-gray-800"*ngIf="isEditMode"> Al terminar de editar los datos presione Enter para guardarlos <p>
+        <p class="text-left font-extrabold text-gray-800"*ngIf="isEditMode"> En caso de que no quiera cambiar los datos presione denuevo el boton Editar<p>
+        <ion-input [(ngModel)]="users[0].name" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].lastname" *ngIf="isEditMode" (keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].summary" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].summary2" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].summary2" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].summary2" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+        <ion-input [(ngModel)]="users[0].summary2" *ngIf="isEditMode"(keydown)="handleKeydown($event)"></ion-input>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-card class="ion-text-center">
+        <ion-card-content class="flex items-center justify-center h-full">
+          <ion-img src="assets/luis ardiles.jpg" alt="Profile picture" class="w-20 h-20"></ion-img>
+        </ion-card-content>
+      </ion-card>
+    <!-- Practica Card -->
+    <ion-card class="ion-text-center ">
+      <ion-card-header>
+        <ion-toolbar color="success" >
+            <ion-card-title class="text-white">Descripcion</ion-card-title>
+        </ion-toolbar>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ users[0].summary }} {{ users[0].summary2 }}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Datos personales Card -->
+    <ion-card class="ion-text-center">
+        <ion-header>
+            <ion-toolbar color="success">
+              <ion-title>Datos personales</ion-title>
+            </ion-toolbar>
+          </ion-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label><strong>Nombre: </strong></ion-label>
+            <ion-text>{{ users[0].name }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Apellido: </strong></ion-label>
+            <ion-text>{{ users[0].lastname }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Email: </strong></ion-label>
+            <ion-text>{{ users[0].email }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>Pais: </strong></ion-label>
+            <ion-text>{{ users[0].country }}</ion-text>
+          </ion-item>
+          <ion-item>
+            <ion-label><strong>City: </strong></ion-label>
+            <ion-text>{{ users[0].city }}</ion-text>
+          </ion-item>
+          <ion-item><strong>Facebook: </strong> <a [href]="users[0].facebook" target="_blank">{{ users[0].facebook }}</a></ion-item>
+          <ion-item><strong>Instagram: </strong> <a [href]="users[0].instagram" target="_blank">{{ users[0].instagram }}</a></ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Intereses Card -->
+    <ion-card class="ion-text-center">
+      <ion-card-header>
+        <ion-toolbar color="success" >
+            <ion-card-title class="text-white">Intereses</ion-card-title>
+        </ion-toolbar>
+      </ion-card-header>
+      <ion-card-content class="flex items-center justify-center">
+        <ion-list class="flex flex-wrap">
+          <ion-item *ngFor="let hobby of hobbies; let i = index">
+            {{ i + 1 }}. {{ hobby.description }}
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- Tecnologías Card -->
+    <ion-content class="ion-padding">
+        <ion-card class="ion-text-center bg-white p-4 rounded-lg mt-3 mx-4">
+          <ion-card-header>
+            <ion-toolbar color="success">
+              <ion-card-title class="text-white">Herramientas tecnológicas</ion-card-title>
+            </ion-toolbar>
+          </ion-card-header>
+          <ion-card-content>
+            <table class="w-full">
+              <thead>
+                <tr class="grid grid-cols-3 gap-4">
+                  <td class="text-left font-extrabold text-gray-800">Tecnologías</td>
+                  <td class="text-center font-extrabold text-gray-800">progreso</td>
+                  <td class="text-center font-extrabold text-gray-800">Año inicio</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let framework of frameworks; let i = index" class="grid grid-cols-3 gap-4 rounded-full bg-blue-500 text-white p-2 mb-2">
+                  <td class="text-left  text-gray-800">{{ framework.name }}</td>
+                  <td class="text-center">{{ framework.level }}%</td>
+                  <td class="text-center">{{ framework.year }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+      <ion-button (click)="handleButtonClick()">Editar</ion-button>
+  </ion-content>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>  
+</ion-app> 
